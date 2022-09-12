@@ -168,11 +168,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  scale: {x: 1, y: 1, z: 1}
-  rotation: 6.2831855
-  startObject: {fileID: 1367854733}
-  endObject: {fileID: 1928491902}
+  position: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
+  scaleBound1: {x: 1, y: 1, z: 1}
+  scaleBound2: {x: 1, y: -1, z: 1}
+  rotation: 0
+  rotationSpeed: -3.141593
+  boundingObjectA: {fileID: 1367854733}
+  boundingObjectB: {fileID: 1928491902}
   speed: 5
+  colour1: {r: 0, g: 0, b: 0, a: 1}
+  colour2: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &444555715
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +190,7 @@ GameObject:
   - component: {fileID: 444555716}
   - component: {fileID: 444555717}
   m_Layer: 0
-  m_Name: Square Beta Start
+  m_Name: Square Beta 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +392,7 @@ GameObject:
   - component: {fileID: 1367854734}
   - component: {fileID: 1367854735}
   m_Layer: 0
-  m_Name: Square Alpha Start
+  m_Name: Square Alpha 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +476,7 @@ GameObject:
   - component: {fileID: 1660429769}
   - component: {fileID: 1660429770}
   m_Layer: 0
-  m_Name: Square Beta End
+  m_Name: Square Beta 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,11 +579,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  scale: {x: 1, y: 1, z: 1}
-  rotation: 3.1415925
-  startObject: {fileID: 444555715}
-  endObject: {fileID: 1660429768}
+  position: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
+  scaleBound1: {x: 1, y: 1, z: 1}
+  scaleBound2: {x: 0.5, y: 2, z: 1}
+  rotation: 0
+  rotationSpeed: 6.2831855
+  boundingObjectA: {fileID: 444555715}
+  boundingObjectB: {fileID: 1660429768}
   speed: 7
+  colour1: {r: 0, g: 0, b: 0, a: 1}
+  colour2: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1777779224
 Transform:
   m_ObjectHideFlags: 0
@@ -638,7 +650,7 @@ GameObject:
   - component: {fileID: 1928491903}
   - component: {fileID: 1928491904}
   m_Layer: 0
-  m_Name: Square Alpha End
+  m_Name: Square Alpha 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
