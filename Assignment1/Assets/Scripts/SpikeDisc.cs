@@ -29,6 +29,11 @@ public class SpikeDisc : MonoBehaviour
     public Color colour1 = Color.black;
     public Color colour2 = Color.white;
 
+    // Collider properties
+    private Collider2D sdCollider;
+    private Vector2[] vertices2D;
+    public GameObject spark;
+
     // Default object properties
     private Vector3[] objectVertices = new Vector3[] {
             new Vector3(0.0f, 0.0f, 0.0f),   // 1
@@ -140,6 +145,13 @@ public class SpikeDisc : MonoBehaviour
 
         // Recalculate the bounding volume
         mesh.RecalculateBounds();
+
+        //Add collision
+        gameObject.AddComponent<PolygonCollider2D>();
+        gameObject.AddComponent<Rigidbody2D>().gravityScale = 0;
+
+        vertices2D = new Vector2[vertices.Length];
+
     }
 
     // Update is called once per frame
@@ -221,11 +233,20 @@ public class SpikeDisc : MonoBehaviour
 
             // Colour
             colours[i] = colour;
+
+            // Transform for collider
+            vertices2D[i] = new Vector2(vertices[i].x, vertices[i].y);
         }
 
         // Set the mesh vertices and colour
         mesh.vertices = vertices;
         mesh.colors = colours;
+
+        // Remove old collider based on old points and create new one
+        DestroyImmediate(gameObject.GetComponent<PolygonCollider2D>());
+        gameObject.AddComponent<PolygonCollider2D>().points = vertices2D;        
+
+        ChangeSpeed();
     }
 
     // Get bounding points from bounding objects
@@ -233,5 +254,44 @@ public class SpikeDisc : MonoBehaviour
     {
         pointA = boundingObjectA.transform.position;
         pointB = boundingObjectB.transform.position;
+    }
+
+    // Change the speed by clicking on the object
+    private void ChangeSpeed()
+    {
+        // Speed up with left click
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (this.gameObject.GetComponent<Collider2D>().OverlapPoint(mousePosition) && speed != 20)
+            {
+                speed++;
+            }
+                
+        }
+        // Speed down with right click
+        if (Input.GetMouseButtonDown(1)) 
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (this.gameObject.GetComponent<Collider2D>().OverlapPoint(mousePosition) && speed != 0)
+            {
+                speed--;
+            }
+        }
+    }
+
+    // Detect collision to reverse direction and instantiate spark at collision point
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if (collision.gameObject.tag == "SpikeDisc")
+        {
+            directionForward = !directionForward;
+
+            Vector3 collisionPoint = new Vector3(collision.contacts[0].point.x,collision.contacts[0].point.y, 0.0f);
+
+            var sparkClone = Instantiate(spark, collisionPoint, Quaternion.identity);
+            Destroy(sparkClone, 0.1f);
+        }
+            
     }
 }
