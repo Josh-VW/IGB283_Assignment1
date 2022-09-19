@@ -29,12 +29,7 @@ public class SpikeDisc : MonoBehaviour
     public Color colour1 = Color.black;
     public Color colour2 = Color.white;
 
-    // Collider properties
-    private Collider2D sdCollider;
-    private Vector2[] vertices2D;
-    public GameObject spark;
-
-    // Default object properties
+    // Default mesh properties
     private Vector3[] objectVertices = new Vector3[] {
             new Vector3(0.0f, 0.0f, 0.0f),   // 1
             new Vector3(0.0f, 0.7f, 0.0f),   // 2
@@ -92,12 +87,41 @@ public class SpikeDisc : MonoBehaviour
             0, 16, 1    // 16
     };
 
+    // Collider properties
+    private Vector2[] vertices2D;
+    private int[] hullIndices = new int[] {
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        1
+    };
+    public GameObject spark;
+
     // Start is called before the first frame update
     void Start()
     {
         // Add a MeshFilter and MeshRenderer to the Empty GameObject
         gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
+
+        // Add collider
+        gameObject.AddComponent<PolygonCollider2D>();
+        gameObject.AddComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
 
         // Get the Mesh from the MeshFilter
         Mesh mesh = GetComponent<MeshFilter>().mesh;
@@ -146,13 +170,8 @@ public class SpikeDisc : MonoBehaviour
         // Recalculate the bounding volume
         mesh.RecalculateBounds();
 
-        //Add collision
-        gameObject.AddComponent<PolygonCollider2D>();
-        gameObject.AddComponent<Rigidbody2D>().gravityScale = 0;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
-
-        vertices2D = new Vector2[vertices.Length];
+        // Set collider
+        GetHull(vertices);
     }
 
     // Update is called once per frame
@@ -243,9 +262,8 @@ public class SpikeDisc : MonoBehaviour
         mesh.vertices = vertices;
         mesh.colors = colours;
 
-        // Remove old collider based on old points and create new one
-        DestroyImmediate(gameObject.GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>().points = vertices2D;        
+        // Set collider
+        GetHull(vertices);
 
         ChangeSpeed();
     }
@@ -253,22 +271,21 @@ public class SpikeDisc : MonoBehaviour
     // Get bounding points from bounding objects
     private void GetBounds()
     {
-        pointA = boundingObjectA.transform.position;
-        pointB = boundingObjectB.transform.position;
+        pointA = boundingObjectA.GetComponent<BoundaryMovement>().position;
+        pointB = boundingObjectB.GetComponent<BoundaryMovement>().position;
     }
 
     // Change the speed by clicking on the object
     private void ChangeSpeed()
     {
         // Speed up with left click
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (this.gameObject.GetComponent<Collider2D>().OverlapPoint(mousePosition) && speed != 20)
             {
                 speed++;
             }
-                
         }
         // Speed down with right click
         if (Input.GetMouseButtonDown(1)) 
@@ -279,6 +296,19 @@ public class SpikeDisc : MonoBehaviour
                 speed--;
             }
         }
+    }
+
+    // Get the mesh vertices to form the hull of the 2D collider
+    private void GetHull(Vector3[] meshVertices)
+    {
+        vertices2D = new Vector2[hullIndices.Length];
+        for (int i = 0; i < hullIndices.Length; i++)
+        {
+            Vector3 meshVertex = meshVertices[hullIndices[i]];
+            vertices2D[i] = new Vector2(meshVertex.x, meshVertex.y);
+        }
+        GetComponent<PolygonCollider2D>().points = null;
+        GetComponent<PolygonCollider2D>().points = vertices2D;
     }
 
     // Detect collision to reverse direction and instantiate spark at collision point
