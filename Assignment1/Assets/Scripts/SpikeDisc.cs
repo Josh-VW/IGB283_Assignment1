@@ -23,7 +23,7 @@ public class SpikeDisc : MonoBehaviour
     private Vector3 pointA;
     private Vector3 pointB;
     public float speed = 5.0f;
-    private bool directionForward = true;
+    public bool directionForward = true;
 
     // Colour properties
     public Color colour1 = Color.black;
@@ -149,9 +149,10 @@ public class SpikeDisc : MonoBehaviour
         //Add collision
         gameObject.AddComponent<PolygonCollider2D>();
         gameObject.AddComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
 
         vertices2D = new Vector2[vertices.Length];
-
     }
 
     // Update is called once per frame
@@ -286,6 +287,7 @@ public class SpikeDisc : MonoBehaviour
         if (collision.gameObject.tag == "SpikeDisc")
         {
             directionForward = !directionForward;
+            rotationSpeed = -rotationSpeed;
 
             Vector3 collisionPoint = new Vector3(collision.contacts[0].point.x,collision.contacts[0].point.y, 0.0f);
 
