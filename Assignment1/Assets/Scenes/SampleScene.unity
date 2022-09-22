@@ -176,7 +176,7 @@ MonoBehaviour:
   rotationSpeed: -3.141593
   boundingObjectA: {fileID: 1367854733}
   boundingObjectB: {fileID: 1928491902}
-  speed: 5
+  speed: 4
   directionForward: 1
   colour1: {r: 0, g: 0, b: 0, a: 1}
   colour2: {r: 1, g: 1, b: 1, a: 1}
@@ -484,7 +484,7 @@ MonoBehaviour:
   rotationSpeed: 6.2831855
   boundingObjectA: {fileID: 444555715}
   boundingObjectB: {fileID: 1660429768}
-  speed: 7
+  speed: 8
   directionForward: 1
   colour1: {r: 0, g: 0, b: 0, a: 1}
   colour2: {r: 1, g: 1, b: 1, a: 1}

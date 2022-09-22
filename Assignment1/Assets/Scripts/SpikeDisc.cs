@@ -22,7 +22,7 @@ public class SpikeDisc : MonoBehaviour
     public GameObject boundingObjectB;
     private Vector3 pointA;
     private Vector3 pointB;
-    public float speed = 5.0f;
+    public float speed = 4.0f;
     public bool directionForward = true;
 
     // Colour properties
@@ -284,7 +284,7 @@ public class SpikeDisc : MonoBehaviour
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (this.gameObject.GetComponent<Collider2D>().OverlapPoint(mousePosition) && speed != 20)
             {
-                speed++;
+                speed += 4;
             }
         }
         // Speed down with right click
@@ -293,7 +293,7 @@ public class SpikeDisc : MonoBehaviour
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (this.gameObject.GetComponent<Collider2D>().OverlapPoint(mousePosition) && speed != 0)
             {
-                speed--;
+                speed -= 4;
             }
         }
     }
