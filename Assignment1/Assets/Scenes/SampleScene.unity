@@ -168,18 +168,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  position: {x: 0, y: 0, z: 0}
-  scale: {x: 0, y: 0, z: 0}
   scaleBound1: {x: 1, y: 1, z: 1}
   scaleBound2: {x: 1, y: -1, z: 1}
-  rotation: 0
   rotationSpeed: -3.141593
   boundingObjectA: {fileID: 1367854733}
   boundingObjectB: {fileID: 1928491902}
   speed: 4
   directionForward: 1
-  colour1: {r: 0, g: 0, b: 0, a: 1}
-  colour2: {r: 1, g: 1, b: 1, a: 1}
+  colour1: {r: 0, g: 0.5882353, b: 0, a: 1}
+  colour2: {r: 0.5882353, g: 0.5882353, b: 0, a: 1}
   spark: {fileID: 6527316769980725638, guid: 0dfa2765045554843a4e09a523a1b7fe, type: 3}
 --- !u!1 &444555715
 GameObject:
@@ -226,10 +223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  beingDragged: 0
-  position: {x: 6, y: 1, z: 0}
+  position: {x: 6, y: 2, z: 0}
   scale: {x: 1, y: 1, z: 1}
   rotation: 0
+  colour: {r: 1, g: 0, b: 1, a: 1}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,10 +390,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  beingDragged: 0
-  position: {x: 8, y: -1, z: 0}
+  position: {x: 8, y: -2, z: 0}
   scale: {x: 1, y: 1, z: 1}
   rotation: 0
+  colour: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1660429768
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,10 +439,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  beingDragged: 0
-  position: {x: -8, y: 1, z: 0}
+  position: {x: -8, y: 2, z: 0}
   scale: {x: 1, y: 1, z: 1}
   rotation: 0
+  colour: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1777779222
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,18 +473,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  position: {x: 0, y: 0, z: 0}
-  scale: {x: 0, y: 0, z: 0}
   scaleBound1: {x: 1, y: 1, z: 1}
   scaleBound2: {x: 0.5, y: 2, z: 1}
-  rotation: 0
   rotationSpeed: 6.2831855
   boundingObjectA: {fileID: 444555715}
   boundingObjectB: {fileID: 1660429768}
   speed: 8
   directionForward: 1
-  colour1: {r: 0, g: 0, b: 0, a: 1}
-  colour2: {r: 1, g: 1, b: 1, a: 1}
+  colour1: {r: 0.5882353, g: 0, b: 0.5882353, a: 1}
+  colour2: {r: 0.5882353, g: 0, b: 0, a: 1}
   spark: {fileID: 6527316769980725638, guid: 0dfa2765045554843a4e09a523a1b7fe, type: 3}
 --- !u!4 &1777779224
 Transform:
@@ -583,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  beingDragged: 0
-  position: {x: -6, y: -1, z: 0}
+  position: {x: -6, y: -2, z: 0}
   scale: {x: 1, y: 1, z: 1}
   rotation: 0
+  colour: {r: 1, g: 1, b: 0, a: 1}

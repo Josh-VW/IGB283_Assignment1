@@ -10,7 +10,7 @@ public class BoundaryMovement : MonoBehaviour
     public Material material;
 
     // The code for this script is modified code from IGB283 workshop 5
-    public bool beingDragged = false;
+    private bool beingDragged = false;
 
     // Transform properties
     public Vector3 position = new Vector3(0.0f, 0.0f, 0.0f);
@@ -37,6 +37,9 @@ public class BoundaryMovement : MonoBehaviour
 
     // Collider properties
     private Vector2[] vertices2D;
+
+    // Colour Properties
+    public Color colour = Color.white;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +77,9 @@ public class BoundaryMovement : MonoBehaviour
 
             // Transform for collider
             vertices2D[i] = new Vector2(vertices[i].x, vertices[i].y);
+
+            // Colour
+            colours[i] = colour;
         }
 
         // Set the mesh vertices and colours
@@ -105,9 +111,6 @@ public class BoundaryMovement : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (beingDragged)
         {
-            //position.y = mousePosition.y;
-            //transform.position = position;
-
             //// Get the vertices and colours from the mesh
             Mesh mesh = GetComponent<MeshFilter>().mesh;
             Vector3[] vertices = mesh.vertices;

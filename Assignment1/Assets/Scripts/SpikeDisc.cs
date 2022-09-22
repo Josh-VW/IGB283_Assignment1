@@ -10,11 +10,11 @@ public class SpikeDisc : MonoBehaviour
     public Material material;
 
     // Transform properties
-    public Vector3 position;
-    public Vector3 scale;
+    private Vector3 position;
+    private Vector3 scale;
     public Vector3 scaleBound1 = new Vector3(1.0f, 1.0f, 1.0f);
     public Vector3 scaleBound2 = new Vector3(0.5f, 2.0f, 1.0f);
-    public float rotation = 0.0f;
+    private float rotation = 0.0f;
     public float rotationSpeed = 0.0f;
 
     // Bounding properties
